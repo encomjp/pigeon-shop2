@@ -741,6 +741,20 @@
             
             let subtotal = 0;
             
+            // Function to determine product type and icon
+            function getProductIcon(itemName) {
+                const name = itemName.toLowerCase();
+                if (name.includes('foto') || name.includes('bild') || name.includes('photo')) {
+                    return { icon: 'fas fa-camera', class: 'photo-icon' };
+                } else if (name.includes('merch') || name.includes('shirt') || name.includes('tasse') || name.includes('mug') || name.includes('cap')) {
+                    return { icon: 'fas fa-tshirt', class: 'merch-icon' };
+                } else if (name.includes('kurs') || name.includes('course') || name.includes('training') || name.includes('workshop')) {
+                    return { icon: 'fas fa-graduation-cap', class: 'course-icon' };
+                } else {
+                    return { icon: 'fas fa-dove', class: '' }; // Default dove icon
+                }
+            }
+            
             // Generate order items HTML
             cart.forEach(item => {
                 const itemTotal = item.price * item.quantity;
@@ -749,18 +763,39 @@
                 const orderItem = document.createElement('div');
                 orderItem.classList.add('order-item');
                 
-                // Add image if available
-                const imageHtml = item.image ? 
-                    `<img src="../${item.image}" alt="${item.name}" class="order-item-image">` : 
-                    '';
+                // Determine the image/icon to display
+                const productIcon = getProductIcon(item.name);
+                let imageOrIconHtml = '';
+                
+                if (item.image) {
+                    // Try to load image, fallback to icon if it fails
+                    imageOrIconHtml = `
+                        <img src="../${item.image}" 
+                             alt="${item.name}" 
+                             class="order-item-image"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="order-item-icon ${productIcon.class}" style="display: none;">
+                            <i class="${productIcon.icon}"></i>
+                        </div>
+                    `;
+                } else {
+                    // Show icon directly if no image
+                    imageOrIconHtml = `
+                        <div class="order-item-icon ${productIcon.class}">
+                            <i class="${productIcon.icon}"></i>
+                        </div>
+                    `;
+                }
                 
                 orderItem.innerHTML = `
-                    ${imageHtml}
+                    ${imageOrIconHtml}
                     <div class="order-item-details">
                         <div class="order-item-name">${item.name}</div>
-                        <div class="order-item-price">€${item.price.toFixed(2)}</div>
+                        <div class="order-item-price">
+                            <i class="fas fa-tag"></i>
+                            €${item.price.toFixed(2)} × ${item.quantity}
+                        </div>
                     </div>
-                    <div class="order-item-quantity">x${item.quantity}</div>
                     <div class="order-item-total">€${itemTotal.toFixed(2)}</div>
                 `;
                 
