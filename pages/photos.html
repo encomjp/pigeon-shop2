@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taubenfotos - Agil Shop</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo-img {
+            height: 40px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>
+                <a href="../index.html" class="logo-container">
+                    <img src="https://img.freepik.com/psd-premium/taube-png-taube-auf-transparentem-hintergrund-png-herunterladen_303714-5904.jpg" alt="Taube Logo" class="logo-img">
+                    Agil Shop
+                </a>
+            </h1>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Startseite</a></li>
+                    <li>
+                        <a href="#">Produkte</a>
+                        <ul>
+                            <li><a href="photos.html" class="active">Taubenfotos</a></li>
+                            <li><a href="merch.html">Tauben Merch</a></li>
+                            <li><a href="courses.html">Kurse</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../bestellung/cart.html"><i class="fas fa-shopping-cart"></i> Warenkorb <span id="cart-count" class="cart-badge">0</span></a></li>
+                    <li><a href="../bestellung/order-tracking.html"><i class="fas fa-shipping-fast"></i> Bestellung verfolgen</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <div class="container">
+            <section class="category-header">
+                <h2>Taubenfotos</h2>
+                <p>Entdecken Sie unsere exklusive Sammlung von Taubenfotos, die die Schönheit und Majestät dieser faszinierenden Vögel einfangen.</p>
+            </section>
+            
+            <section class="category-products">
+                <!-- Loading indicator -->
+                <div id="loading" class="loading-container" style="text-align: center; padding: 50px;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--accent-color);"></i>
+                    <p>Produkte werden geladen...</p>
+                </div>
+                
+                <!-- Products will be loaded here from the database -->
+                <div class="product-grid" id="photos-container">
+                    <!-- Dynamic content will be inserted here by JavaScript -->
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Agil Shop</h3>
+                    <p>Ihr Online-Shop für alles rund um Tauben.</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/milan.abdulrahim/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="../index.html">Startseite</a></li>
+                        <li><a href="photos.html">Taubenfotos</a></li>
+                        <li><a href="merch.html">Tauben Merch</a></li>
+                        <li><a href="courses.html">Kurse</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Rechtliches</h3>
+                    <ul>
+                        <li><a href="impressum.html">Impressum</a></li>
+                        <li><a href="datenschutz.html">Datenschutz</a></li>
+                        <li><a href="#">AGB</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Agil Shop. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="../js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loadingElement = document.getElementById('loading');
+            const photosContainer = document.getElementById('photos-container');
+            
+            // Hide loading indicator when products are loaded
+            // This is handled by the loadProducts function in script.js
+            if (photosContainer && photosContainer.children.length > 0) {
+                loadingElement.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

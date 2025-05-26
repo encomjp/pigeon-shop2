@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agil Shop - Tauben Onlineshop</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description" content="Entdecken Sie exklusive Taubenfotos, Merchandise und Kurse im Agil Shop - dem Online-Shop für Taubenliebhaber">
+    <style>
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo-img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .hero {
+            /* GIF background for the entire hero section */
+            background-image: url('https://i.imgur.com/WtWdQ9s.gif');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Dark overlay for better text readability */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative; 
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-text-background {
+            /* Remove GIF from text, use solid white text instead */
+            background: none;
+            color: white;
+            padding: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .hero-text-background h1, 
+        .hero-text-background p {
+            color: white;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        
+        .hero-text-background h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        
+        .hero-text-background p {
+            font-size: 1.4rem;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .hero-buttons .btn {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-buttons .btn-primary {
+            background-color: #0062cc;
+            color: white;
+        }
+
+        .hero-buttons .btn-primary:hover {
+            background-color: #004a9e;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-buttons .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .hero-buttons .btn-secondary:hover {
+            background-color: white;
+            color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        /* Fallback for browsers that don't support background-clip: text */
+        @supports not (-webkit-background-clip: text) and (not (background-clip: text)) {
+            .hero-text-background {
+                background-image: none;
+                background-color: rgba(255, 255, 255, 0.1);
+                border-radius: 10px;
+            }
+            .hero-text-background h1, 
+            .hero-text-background p {
+                color: white;
+                -webkit-text-stroke: 0;
+                text-stroke: 0;
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 20px;
+                min-height: 400px;
+                background-attachment: scroll; /* Better performance on mobile */
+            }
+            
+            .hero-text-background h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-text-background p {
+                font-size: 1.2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-buttons .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text-background h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-text-background p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>
+                <a href="index.html" class="logo-container">
+                    <img src="https://img.freepik.com/psd-premium/taube-png-taube-auf-transparentem-hintergrund-png-herunterladen_303714-5904.jpg" alt="Taube Logo" class="logo-img">
+                    Agil Shop
+                </a>
+            </h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Startseite</a></li>
+                    <li>
+                        <a href="#">Produkte</a>
+                        <ul>
+                            <li><a href="pages/photos.html">Taubenfotos</a></li>
+                            <li><a href="pages/merch.html">Tauben Merch</a></li>
+                            <li><a href="pages/courses.html">Kurse</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="bestellung/cart.html"><i class="fas fa-shopping-cart"></i> Warenkorb <span id="cart-count" class="cart-badge">0</span></a></li>
+                    <li><a href="bestellung/order-tracking.html"><i class="fas fa-shipping-fast"></i> Bestellung verfolgen</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Modernized Hero Section -->
+    <section class="hero">
+        <div class="hero-content fade-in">
+            <div class="hero-text-background">
+                <h1>Die Welt der Tauben</h1>
+                <p>Von majestätischen Fotos bis hin zu einzigartigem Merch – alles für Taubenliebhaber an einem Ort.</p>
+            </div>
+            <div class="hero-buttons">
+                <a href="pages/photos.html" class="btn btn-primary">Fotos entdecken</a>
+                <a href="pages/courses.html" class="btn btn-secondary">Kurse ansehen</a>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <div class="container">
+            <!-- Featured Products Section -->
+            <section class="featured-products">
+                <h2>Beliebte Produkte</h2>
+                
+                <!-- Loading indicator -->
+                <div id="loading-featured" class="loading-container" style="text-align: center; padding: 30px;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--accent-color);"></i>
+                    <p>Produkte werden geladen...</p>
+                </div>
+                
+                <div class="product-grid">
+                    <!-- Products will be loaded dynamically from the database -->
+                </div>
+                
+                <div class="view-all-container">
+                    <a href="pages/photos.html" class="btn btn-outline">Alle Produkte ansehen</a>
+                </div>
+            </section>
+            
+            <!-- Testimonials Section -->
+            <section class="testimonials">
+                <h2>Das sagen unsere Kunden</h2>
+                <div class="testimonials-container">
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">★★★★★</div>
+                        <p>"Dank des Kurses verstehe ich endlich, warum meine Nachbarn nachts schreien. Überraschung: Es waren Tauben die ganze Zeit! Wer hätte das gedacht?"</p>
+                        <div class="testimonial-author">- Lennardo Pfaffino van Hohensachsen</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">★★★★★</div>
+                        <p>"Meine ESP32 IoT Tauben funktionieren endlich! Jetzt kann ich meine Nachbarn auch nachts überwachen. Aus rein wissenschaftlichen Gründen, natürlich."</p>
+                        <div class="testimonial-author">- Waldemar Fech</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">★★★★☆</div>
+                        <p>"Wie installiere ich STEAM auf meine Taube? Support sagte ich soll aufhören anzurufen, aber meine Taube möchte Counter-Strike spielen!"</p>
+                        <div class="testimonial-author">- Marc Frauenhoffer</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Agil Shop</h3>
+                    <p>Ihr Online-Shop für alles rund um Tauben.</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/milan.abdulrahim/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="index.html">Startseite</a></li>
+                        <li><a href="pages/photos.html">Taubenfotos</a></li>
+                        <li><a href="pages/merch.html">Tauben Merch</a></li>
+                        <li><a href="pages/courses.html">Kurse</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Rechtliches</h3>
+                    <ul>
+                        <li><a href="pages/impressum.html">Impressum</a></li>
+                        <li><a href="pages/datenschutz.html">Datenschutz</a></li>
+                        <li><a href="#">AGB</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Agil Shop. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

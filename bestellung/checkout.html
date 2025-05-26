@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasse - Agil Shop</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .checkout-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .order-summary {
+            background-color: var(--primary-color);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--box-shadow);
+            border: 1px solid var(--border-color);
+            position: sticky;
+            top: 100px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .order-summary h3 {
+            margin-top: 0;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+        
+        .order-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .order-item:last-of-type {
+            border-bottom: none;
+        }
+        
+        .order-item-image {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .order-item-details {
+            flex: 1;
+        }
+        
+        .order-item-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .order-item-price {
+            font-size: 0.9rem;
+            color: var(--text-medium);
+        }
+        
+        .order-item-quantity {
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .summary-totals {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .summary-line {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .summary-line.total {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid var(--text-dark);
+        }
+        
+        .checkout-form {
+            margin-bottom: 0;
+        }
+        
+        @media (max-width: 992px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .order-summary {
+                position: relative;
+                top: 0;
+                order: -1;
+            }
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo-img {
+            height: 40px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>
+                <a href="../index.html" class="logo-container">
+                    <img src="https://img.freepik.com/psd-premium/taube-png-taube-auf-transparentem-hintergrund-png-herunterladen_303714-5904.jpg" alt="Taube Logo" class="logo-img">
+                    Agil Shop
+                </a>
+            </h1>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Startseite</a></li>
+                    <li>
+                        <a href="#">Produkte</a>
+                        <ul>
+                            <li><a href="../pages/photos.html">Taubenfotos</a></li>
+                            <li><a href="../pages/merch.html">Tauben Merch</a></li>
+                            <li><a href="../pages/courses.html">Kurse</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="cart.html"><i class="fas fa-shopping-cart"></i> Warenkorb <span id="cart-count" class="cart-badge">0</span></a></li>
+                    <li><a href="order-tracking.html"><i class="fas fa-shipping-fast"></i> Bestellung verfolgen</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <div class="container">
+            <h2>Kasse</h2>
+            
+            <div class="checkout-container">
+                <div class="checkout-form">
+                    <h3>Ihre Informationen</h3>
+                    <form id="checkout-form">
+                        <div class="form-group">
+                            <label for="name">Vollständiger Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-Mail-Adresse</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Vollständige Adresse</label>
+                            <textarea id="address" name="address" rows="4" required></textarea>
+                        </div>
+                        
+                        <h3>Zahlungsinformationen</h3>
+                        <p class="payment-notice">Diese Zahlungsinformationen dienen nur zu Demonstrationszwecken. Es wird keine echte Zahlung durchgeführt.</p>
+                        
+                        <div class="form-group">
+                            <label for="card-number">Kartennummer</label>
+                            <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456" maxlength="19">
+                        </div>
+                        
+                        <div class="form-row" style="display: flex; gap: 20px;">
+                            <div class="form-group" style="flex: 1;">
+                                <label for="card-expiry">Gültig bis (MM/JJ)</label>
+                                <input type="text" id="card-expiry" name="card-expiry" placeholder="MM/JJ" maxlength="5">
+                            </div>
+                            <div class="form-group" style="flex: 1;">
+                                <label for="card-cvc">Sicherheitscode</label>
+                                <input type="text" id="card-cvc" name="card-cvc" placeholder="CVC" maxlength="3">
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn" id="place-order-btn">Bestellung aufgeben</button>
+                    </form>
+                </div>
+                
+                <div class="order-summary">
+                    <h3>Bestellübersicht</h3>
+                    <div id="order-items-container">
+                        <!-- Order items will be inserted here via JavaScript -->
+                    </div>
+                    
+                    <div class="summary-totals">
+                        <div class="summary-line">
+                            <span>Zwischensumme:</span>
+                            <span id="summary-subtotal">€0.00</span>
+                        </div>
+                        <div class="summary-line">
+                            <span>Versandkosten:</span>
+                            <span id="summary-shipping">€4.95</span>
+                        </div>
+                        <div class="summary-line total">
+                            <span>Gesamtsumme:</span>
+                            <span id="summary-total">€4.95</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Agil Shop</h3>
+                    <p>Ihr Online-Shop für alles rund um Tauben.</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/milan.abdulrahim/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="../index.html">Startseite</a></li>
+                        <li><a href="../pages/photos.html">Taubenfotos</a></li>
+                        <li><a href="../pages/merch.html">Tauben Merch</a></li>
+                        <li><a href="../pages/courses.html">Kurse</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Rechtliches</h3>
+                    <ul>
+                        <li><a href="../pages/impressum.html">Impressum</a></li>
+                        <li><a href="../pages/datenschutz.html">Datenschutz</a></li>
+                        <li><a href="#">AGB</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Agil Shop. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Display order items in the summary
+            const cart = JSON.parse(localStorage.getItem('agilShopCart')) || [];
+            const orderItemsContainer = document.getElementById('order-items-container');
+            const summarySubtotal = document.getElementById('summary-subtotal');
+            const summaryTotal = document.getElementById('summary-total');
+            
+            // Shipping cost
+            const SHIPPING_COST = 4.95;
+            
+            if (cart.length === 0) {
+                // Redirect to cart if no items
+                window.location.href = 'cart.html';
+                return;
+            }
+            
+            let subtotal = 0;
+            
+            // Generate order items HTML
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                
+                const orderItem = document.createElement('div');
+                orderItem.classList.add('order-item');
+                
+                // Add image if available
+                const imageHtml = item.image ? 
+                    `<img src="../${item.image}" alt="${item.name}" class="order-item-image">` : 
+                    '';
+                
+                orderItem.innerHTML = `
+                    ${imageHtml}
+                    <div class="order-item-details">
+                        <div class="order-item-name">${item.name}</div>
+                        <div class="order-item-price">€${item.price.toFixed(2)}</div>
+                    </div>
+                    <div class="order-item-quantity">x${item.quantity}</div>
+                    <div class="order-item-total">€${itemTotal.toFixed(2)}</div>
+                `;
+                
+                orderItemsContainer.appendChild(orderItem);
+            });
+            
+            // Update totals
+            const total = subtotal + SHIPPING_COST;
+            summarySubtotal.textContent = `€${subtotal.toFixed(2)}`;
+            summaryTotal.textContent = `€${total.toFixed(2)}`;
+        });
+    </script>
+</body>
+</html>
