@@ -7,18 +7,263 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo-img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        /* Checkout Page Header */
+        .checkout-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: var(--border-radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .checkout-header h2 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text-dark) 0%, var(--accent-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            width: fit-content;
+            margin: 0 auto;
+            white-space: nowrap;
+        }
+
+        .checkout-header-icon {
+            font-size: 2.2rem;
+            color: var(--accent-color);
+            background: rgba(59, 130, 246, 0.1);
+            padding: 15px;
+            border-radius: 50%;
+            border: 2px solid rgba(59, 130, 246, 0.2);
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Progress Steps */
+        .checkout-progress {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .progress-step {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 25px;
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .progress-step.completed {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .progress-arrow {
+            color: var(--text-light);
+            font-size: 1.2rem;
+        }
+
+        /* Main Container */
         .checkout-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            grid-template-columns: 1fr 400px;
+            gap: 40px;
+            align-items: start;
         }
         
-        .order-summary {
-            background-color: var(--primary-color);
+        /* Form Styling */
+        .checkout-form-wrapper {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: var(--border-radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .checkout-form-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.02) 0%, rgba(37, 99, 235, 0.01) 100%);
+            z-index: 1;
+        }
+
+        .checkout-form-wrapper > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-section {
+            margin-bottom: 40px;
+        }
+
+        .form-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .form-section-icon {
+            color: var(--accent-color);
+            background: rgba(59, 130, 246, 0.1);
+            padding: 8px;
+            border-radius: 50%;
+            font-size: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
             border-radius: var(--border-radius);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            color: var(--text-dark);
+            font-size: 1rem;
+            transition: all var(--transition-speed) ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-light);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .payment-notice {
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.1) 0%, rgba(255, 193, 7, 0.05) 100%);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin-bottom: 25px;
+            color: var(--text-medium);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .payment-notice i {
+            color: #ffc107;
+            font-size: 1.2rem;
+        }
+
+        .place-order-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--accent-color) 0%, #2563eb 100%);
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            border-radius: var(--border-radius);
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+            position: relative;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .place-order-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .place-order-btn:hover::before {
+            left: 100%;
+        }
+
+        .place-order-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(59, 130, 246, 0.4);
+        }
+
+        .place-order-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Order Summary */
+        .order-summary {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: var(--border-radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             padding: 30px;
-            box-shadow: var(--box-shadow);
-            border: 1px solid var(--border-color);
             position: sticky;
             top: 100px;
             max-height: 80vh;
@@ -27,76 +272,184 @@
         
         .order-summary h3 {
             margin-top: 0;
+            margin-bottom: 25px;
+            font-size: 1.4rem;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
             padding-bottom: 15px;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .summary-icon {
+            color: var(--accent-color);
+            background: rgba(59, 130, 246, 0.1);
+            padding: 8px;
+            border-radius: 50%;
+            font-size: 1rem;
         }
         
         .order-item {
-            display: flex;
+            display: grid;
+            grid-template-columns: 60px 1fr auto;
             align-items: center;
             gap: 15px;
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all var(--transition-speed) ease;
         }
-        
-        .order-item:last-of-type {
-            border-bottom: none;
+
+        .order-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
         }
         
         .order-item-image {
             width: 60px;
             height: 60px;
             object-fit: cover;
-            border-radius: 4px;
-            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            border: 2px solid rgba(255, 255, 255, 0.2);
         }
         
         .order-item-details {
-            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
         }
         
         .order-item-name {
             font-weight: 600;
-            margin-bottom: 5px;
+            color: var(--text-dark);
+            font-size: 0.95rem;
         }
         
         .order-item-price {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-medium);
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
-        
-        .order-item-quantity {
-            font-weight: 600;
-            min-width: 30px;
-            text-align: center;
+
+        .order-item-total {
+            font-weight: 700;
+            color: var(--accent-color);
+            font-size: 1rem;
+            text-align: right;
         }
         
         .summary-totals {
-            margin-top: 20px;
+            margin-top: 25px;
             padding-top: 20px;
-            border-top: 1px solid var(--border-color);
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
         }
         
         .summary-line {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 8px 0;
+        }
+
+        .summary-line-label {
+            color: var(--text-medium);
+            font-weight: 500;
+        }
+
+        .summary-line-value {
+            font-weight: 600;
+            color: var(--text-dark);
         }
         
         .summary-line.total {
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-top: 15px;
-            padding-top: 15px;
-            border-top: 2px solid var(--text-dark);
+            padding: 20px 0 10px;
+            border-top: 2px solid var(--accent-color);
+            color: var(--accent-color);
         }
-        
-        .checkout-form {
-            margin-bottom: 0;
+
+        /* Loading State */
+        .checkout-loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
         }
-        
+
+        .loading-content {
+            background: var(--primary-color);
+            padding: 40px;
+            border-radius: var(--border-radius-lg);
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .loading-spinner {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Fallback Icon Styling */
+        .order-item-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(37, 99, 235, 0.05) 100%);
+            border: 2px solid rgba(59, 130, 246, 0.2);
+            border-radius: var(--border-radius);
+            color: var(--accent-color);
+            font-size: 1.5rem;
+        }
+
+        .order-item-icon.photo-icon {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%);
+            border-color: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+
+        .order-item-icon.merch-icon {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(168, 85, 247, 0.05) 100%);
+            border-color: rgba(168, 85, 247, 0.2);
+            color: #a855f7;
+        }
+
+        .order-item-icon.course-icon {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(249, 115, 22, 0.05) 100%);
+            border-color: rgba(249, 115, 22, 0.2);
+            color: #f97316;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .checkout-container {
+                grid-template-columns: 1fr 350px;
+                gap: 30px;
+            }
+        }
+
         @media (max-width: 992px) {
             .checkout-container {
                 grid-template-columns: 1fr;
@@ -106,16 +459,37 @@
                 position: relative;
                 top: 0;
                 order: -1;
+                max-height: none;
+            }
+
+            .checkout-form-wrapper {
+                padding: 30px;
             }
         }
-        
-        .logo-container {
-            display: flex;
-            align-items: center;
-        }
-        .logo-img {
-            height: 40px;
-            margin-right: 10px;
+
+        @media (max-width: 768px) {
+            .checkout-header h2 {
+                font-size: 2rem;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .checkout-progress {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .checkout-form-wrapper {
+                padding: 20px;
+            }
+
+            .order-summary {
+                padding: 20px;
+            }
         }
     </style>
 </head>
@@ -148,62 +522,147 @@
     
     <main>
         <div class="container">
-            <h2>Kasse</h2>
+            <!-- Checkout Header -->
+            <div class="checkout-header">
+                <h2>
+                    <div class="checkout-header-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    Sichere Kasse
+                </h2>
+                
+                <!-- Progress Steps -->
+                <div class="checkout-progress">
+                    <div class="progress-step completed">
+                        <i class="fas fa-shopping-cart"></i>
+                        Warenkorb
+                    </div>
+                    <div class="progress-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                    <div class="progress-step completed">
+                        <i class="fas fa-credit-card"></i>
+                        Kasse
+                    </div>
+                    <div class="progress-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                    <div class="progress-step">
+                        <i class="fas fa-check-circle"></i>
+                        Bestätigung
+                    </div>
+                </div>
+            </div>
             
             <div class="checkout-container">
-                <div class="checkout-form">
-                    <h3>Ihre Informationen</h3>
+                <!-- Checkout Form -->
+                <div class="checkout-form-wrapper">
                     <form id="checkout-form">
-                        <div class="form-group">
-                            <label for="name">Vollständiger Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">E-Mail-Adresse</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="address">Vollständige Adresse</label>
-                            <textarea id="address" name="address" rows="4" required></textarea>
-                        </div>
-                        
-                        <h3>Zahlungsinformationen</h3>
-                        <p class="payment-notice">Diese Zahlungsinformationen dienen nur zu Demonstrationszwecken. Es wird keine echte Zahlung durchgeführt.</p>
-                        
-                        <div class="form-group">
-                            <label for="card-number">Kartennummer</label>
-                            <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456" maxlength="19">
-                        </div>
-                        
-                        <div class="form-row" style="display: flex; gap: 20px;">
-                            <div class="form-group" style="flex: 1;">
-                                <label for="card-expiry">Gültig bis (MM/JJ)</label>
-                                <input type="text" id="card-expiry" name="card-expiry" placeholder="MM/JJ" maxlength="5">
+                        <!-- Customer Information -->
+                        <div class="form-section">
+                            <h3>
+                                <div class="form-section-icon">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                Ihre Informationen
+                            </h3>
+                            
+                            <div class="form-group">
+                                <label for="name">
+                                    <i class="fas fa-user"></i>
+                                    Vollständiger Name
+                                </label>
+                                <input type="text" id="name" name="name" placeholder="Max Mustermann" required>
                             </div>
-                            <div class="form-group" style="flex: 1;">
-                                <label for="card-cvc">Sicherheitscode</label>
-                                <input type="text" id="card-cvc" name="card-cvc" placeholder="CVC" maxlength="3">
+                            
+                            <div class="form-group">
+                                <label for="email">
+                                    <i class="fas fa-envelope"></i>
+                                    E-Mail-Adresse
+                                </label>
+                                <input type="email" id="email" name="email" placeholder="max@example.com" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="address">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    Vollständige Lieferadresse
+                                </label>
+                                <textarea id="address" name="address" rows="4" placeholder="Straße und Hausnummer&#10;PLZ Stadt&#10;Land" required></textarea>
                             </div>
                         </div>
                         
-                        <button type="submit" class="btn" id="place-order-btn">Bestellung aufgeben</button>
+                        <!-- Payment Information -->
+                        <div class="form-section">
+                            <h3>
+                                <div class="form-section-icon">
+                                    <i class="fas fa-credit-card"></i>
+                                </div>
+                                Zahlungsinformationen
+                            </h3>
+                            
+                            <div class="payment-notice">
+                                <i class="fas fa-info-circle"></i>
+                                Diese Zahlungsinformationen dienen nur zu Demonstrationszwecken. Es wird keine echte Zahlung durchgeführt.
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="card-number">
+                                    <i class="fas fa-credit-card"></i>
+                                    Kartennummer
+                                </label>
+                                <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456" maxlength="19">
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="card-expiry">
+                                        <i class="fas fa-calendar"></i>
+                                        Gültig bis
+                                    </label>
+                                    <input type="text" id="card-expiry" name="card-expiry" placeholder="MM/JJ" maxlength="5">
+                                </div>
+                                <div class="form-group">
+                                    <label for="card-cvc">
+                                        <i class="fas fa-lock"></i>
+                                        Sicherheitscode
+                                    </label>
+                                    <input type="text" id="card-cvc" name="card-cvc" placeholder="CVC" maxlength="3">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="place-order-btn" id="place-order-btn">
+                            <i class="fas fa-shopping-bag"></i>
+                            Bestellung sicher aufgeben
+                        </button>
                     </form>
                 </div>
                 
+                <!-- Order Summary -->
                 <div class="order-summary">
-                    <h3>Bestellübersicht</h3>
+                    <h3>
+                        <div class="summary-icon">
+                            <i class="fas fa-receipt"></i>
+                        </div>
+                        Bestellübersicht
+                    </h3>
+                    
                     <div id="order-items-container">
                         <!-- Order items will be inserted here via JavaScript -->
                     </div>
                     
                     <div class="summary-totals">
                         <div class="summary-line">
-                            <span>Zwischensumme:</span>
-                            <span id="summary-subtotal">€0.00</span>
+                            <span class="summary-line-label">Zwischensumme:</span>
+                            <span class="summary-line-value" id="summary-subtotal">€0.00</span>
                         </div>
                         <div class="summary-line">
-                            <span>Versandkosten:</span>
-                            <span id="summary-shipping">€4.95</span>
+                            <span class="summary-line-label">
+                                <i class="fas fa-shipping-fast"></i>
+                                Versandkosten:
+                            </span>
+                            <span class="summary-line-value" id="summary-shipping">€4.95</span>
                         </div>
                         <div class="summary-line total">
                             <span>Gesamtsumme:</span>
@@ -211,6 +670,17 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div class="checkout-loading" id="checkout-loading">
+            <div class="loading-content">
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+                <h3>Bestellung wird verarbeitet...</h3>
+                <p>Bitte warten Sie, während wir Ihre Bestellung bearbeiten.</p>
             </div>
         </div>
     </main>
@@ -301,6 +771,33 @@
             const total = subtotal + SHIPPING_COST;
             summarySubtotal.textContent = `€${subtotal.toFixed(2)}`;
             summaryTotal.textContent = `€${total.toFixed(2)}`;
+            
+            // Enhanced form validation and card formatting
+            const cardNumberInput = document.getElementById('card-number');
+            const cardExpiryInput = document.getElementById('card-expiry');
+            const cardCvcInput = document.getElementById('card-cvc');
+            
+            // Format card number with spaces
+            cardNumberInput.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
+                let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+                if (formattedValue.length > 19) formattedValue = formattedValue.substr(0, 19);
+                e.target.value = formattedValue;
+            });
+            
+            // Format expiry date
+            cardExpiryInput.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length >= 2) {
+                    value = value.substring(0, 2) + '/' + value.substring(2, 4);
+                }
+                e.target.value = value;
+            });
+            
+            // Only allow numbers for CVC
+            cardCvcInput.addEventListener('input', (e) => {
+                e.target.value = e.target.value.replace(/[^0-9]/g, '');
+            });
         });
     </script>
 </body>
