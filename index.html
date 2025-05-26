@@ -337,17 +337,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="carousel-indicators">
+                    </div>                    <div class="carousel-indicators">
                         <span class="indicator active" data-slide="0"></span>
                         <span class="indicator" data-slide="1"></span>
                         <span class="indicator" data-slide="2"></span>
-                        <span class="indicator" data-slide="3"></span>
-                        <span class="indicator" data-slide="4"></span>
-                        <span class="indicator" data-slide="5"></span>
-                        <span class="indicator" data-slide="6"></span>
-                        <span class="indicator" data-slide="7"></span>
-                        <span class="indicator" data-slide="8"></span>
                     </div>
                 </div>
             </section>
@@ -402,35 +395,35 @@
                 .reviews-section h2 {
                     margin-bottom: 40px;
                     color: var(--primary-color-dark);
-                }
-
-                .reviews-carousel {
+                }                .reviews-carousel {
                     position: relative;
-                    max-width: 800px;
+                    max-width: 1200px;
                     margin: 0 auto;
                     overflow: hidden;
                     border-radius: 15px;
                     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-                }
-
-                .reviews-container {
+                    padding: 20px 0;
+                }                .reviews-container {
                     display: flex;
-                    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-                    width: 900%; /* 9 reviews * 100% */
+                    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                    width: 300%; /* 3 groups of 3 cards = 300% */
                 }
 
                 .review-card {
-                    flex: 0 0 11.111%; /* 100% / 9 reviews */
-                    padding: 40px 30px;
+                    flex: 0 0 calc(100% / 9); /* 9 cards total, each takes 1/9th of container */
+                    padding: 40px 25px;
                     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
                     color: white;
                     text-align: center;
-                    min-height: 250px;
+                    min-height: 280px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     position: relative;
                     overflow: hidden;
+                    border-radius: 15px;
+                    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+                    margin: 0 10px;
                 }
 
                 .review-card::before {
@@ -564,36 +557,35 @@
             if (reviewsContainer && indicators.length > 0) {
                 let currentSlide = 0;
                 const totalSlides = reviewCards.length;
-                
-                // Function to show specific slide
+                  // Function to show specific slide
                 function showSlide(index) {
-                    const translateX = -index * 11.111; // Each slide is 11.111% width (100/9)
-                    reviewsContainer.style.transform = \`translateX(\${translateX}%)\`;
-                    
-                    // Update indicators
+                    // Show groups of 3 cards: group 0 = cards 0-2, group 1 = cards 3-5, group 2 = cards 6-8
+                    const groupIndex = Math.floor(index / 3);
+                    const translateX = -groupIndex * 100; // Move by 100% to show next group of 3
+                    reviewsContainer.style.transform = `translateX(${translateX}%)`;
+                      // Update indicators - show active based on current group
+                    const currentGroup = Math.floor(index / 3);
                     indicators.forEach((indicator, i) => {
-                        indicator.classList.toggle('active', i === index);
+                        indicator.classList.toggle('active', i === currentGroup);
                     });
                     
                     currentSlide = index;
                 }
-                
-                // Function to go to next slide
+                  // Function to go to next slide
                 function nextSlide() {
-                    currentSlide = (currentSlide + 1) % totalSlides;
+                    currentSlide = (currentSlide + 3) % 9; // Jump by 3 cards (next group)
                     showSlide(currentSlide);
                 }
-                
-                // Auto-advance carousel every 4 seconds
-                let autoSlideInterval = setInterval(nextSlide, 4000);
-                
-                // Add click events to indicators
+                  // Auto-advance carousel every 5 seconds
+                let autoSlideInterval = setInterval(nextSlide, 5000);
+                  // Add click events to indicators
                 indicators.forEach((indicator, index) => {
                     indicator.addEventListener('click', () => {
-                        showSlide(index);
+                        const slideIndex = index * 3; // Each indicator represents a group of 3
+                        showSlide(slideIndex);
                         // Reset auto-advance timer
                         clearInterval(autoSlideInterval);
-                        autoSlideInterval = setInterval(nextSlide, 4000);
+                        autoSlideInterval = setInterval(nextSlide, 5000);
                     });
                 });
                 
@@ -603,9 +595,8 @@
                     carousel.addEventListener('mouseenter', () => {
                         clearInterval(autoSlideInterval);
                     });
-                    
-                    carousel.addEventListener('mouseleave', () => {
-                        autoSlideInterval = setInterval(nextSlide, 4000);
+                      carousel.addEventListener('mouseleave', () => {
+                        autoSlideInterval = setInterval(nextSlide, 5000);
                     });
                 }
                 
