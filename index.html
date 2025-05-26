@@ -407,10 +407,13 @@
                     display: flex;
                     transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
                     width: 300%; /* 3 groups of 3 cards = 300% */
+                    gap: 20px; /* Use gap instead of margins for better spacing */
+                    padding: 0 40px; /* Add padding to ensure cards don't touch edges */
                 }
 
                 .review-card {
-                    flex: 0 0 calc(100% / 9); /* Each card takes 1/9 of the total width (33.33% / 3 = 11.11%) */
+                    flex: 1 1 calc(33.333% / 3 - 20px); /* Each card is 1/9 of viewport minus gap */
+                    min-width: 280px; /* Minimum width to ensure readability */
                     padding: 40px 25px;
                     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
                     color: white;
@@ -423,7 +426,6 @@
                     overflow: hidden;
                     border-radius: 15px;
                     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-                    margin: 0 10px; /* Add consistent spacing between cards */
                 }
 
                 .review-card::before {
@@ -533,17 +535,33 @@
                 .review-card:nth-child(6) { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); }
                 .review-card:nth-child(7) { background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); }
                 .review-card:nth-child(8) { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); }
-                .review-card:nth-child(9) { background: linear-gradient(135deg, #a8c0ff 0%, #3f2b96 100%); }
-
-                /* Responsive adjustments */
+                .review-card:nth-child(9) { background: linear-gradient(135deg, #a8c0ff 0%, #3f2b96 100%); }                /* Responsive adjustments */
                 @media (max-width: 768px) {
+                    .reviews-container {
+                        gap: 15px;
+                        padding: 0 20px;
+                    }
+                    
                     .review-card {
+                        min-width: 250px;
                         padding: 30px 20px;
                         min-height: 200px;
                     }
                     
                     .review-card p {
                         font-size: 1rem;
+                    }
+                }
+                
+                @media (max-width: 480px) {
+                    .reviews-container {
+                        gap: 10px;
+                        padding: 0 15px;
+                    }
+                    
+                    .review-card {
+                        min-width: 200px;
+                        padding: 25px 15px;
                     }
                 }
             `;
@@ -560,7 +578,7 @@
                 function showSlide(index) {
                     // Show groups of 3 cards: group 0 = cards 0-2, group 1 = cards 3-5, group 2 = cards 6-8
                     const groupIndex = Math.floor(index / 3);
-                    const translateX = -groupIndex * (100 / 3); // Move by 33.33% to show next group of 3 (100% / 3 groups)
+                    const translateX = -groupIndex * (100 / 3); // Move by 33.33% to show next group of 3
                     reviewsContainer.style.transform = `translateX(${translateX}%)`;
                       // Update indicators - show active based on current group
                     const currentGroup = Math.floor(index / 3);
