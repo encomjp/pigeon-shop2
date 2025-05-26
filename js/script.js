@@ -452,8 +452,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Store transaction ID in localStorage for order tracking
                 localStorage.setItem('lastTransactionId', data.transaction_id);
                 
-                // Redirect to a thank you page or show order confirmation
-                window.location.href = 'bestellung/order-confirmation.html';
+                // Redirect to a confirmation page with the order ID
+                // Make sure this path is correct based on your project structure
+                window.location.href = '/bestellung/order-confirmation.html';
                 
             } catch (error) {
                 console.error("Error placing order:", error);

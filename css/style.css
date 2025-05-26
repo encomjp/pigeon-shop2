@@ -254,7 +254,7 @@ nav ul li {
 nav ul ul { /* Dropdown styles */
     display: none; /* Hide by default */
     position: absolute;
-    top: calc(100% + 5px); /* Position below parent + 5px gap */
+    top: 100%; /* Position directly below parent, removing the 5px gap */
     left: 0;
     background-color: var(--primary-color);
     list-style: none;
