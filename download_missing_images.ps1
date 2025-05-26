@@ -32,4 +32,3 @@ foreach ($image in $missingImages) {
 }
 
 Write-Host "Image download process complete."
-g
