@@ -81,19 +81,19 @@ try {
     if ($count == 0) {
         $products = [
             // Taubenfotos (Pigeon Photos)
-            ['Majestätische Stadttaube', 'Eine beeindruckende Taube mit Blick über die Stadt. Hochauflösendes Foto im Format 30x40cm.', 15.99, 'https://www.allaboutbirds.org/guide/assets/photo/308074031-480px.jpg', 'photos', 50],
-            ['Fliegende Schönheit', 'Eine Taube im eleganten Flug über einen Park. Perfekt für Wanddekoration.', 19.99, 'https://cdn.download.ams.birds.cornell.edu/api/v1/asset/202984001/1200', 'photos', 30],
-            ['Tauben-Portrait', 'Nahaufnahme einer Taube mit beeindruckenden Details des Gefieders. Limitierte Edition.', 12.99, 'https://nas-national-prod.s3.amazonaws.com/styles/hero_image/s3/Rock-Pigeon_KK_APA_2011_27391_232647_DavidBroadwell.jpg', 'photos', 25],
+            ['Majestätische Stadttaube', 'Eine beeindruckende Taube mit Blick über die Stadt. Hochauflösendes Foto im Format 30x40cm.', 15.99, 'assets/images/city-pigeon.jpg', 'photos', 50],
+            ['Fliegende Schönheit', 'Eine Taube im eleganten Flug über einen Park. Perfekt für Wanddekoration.', 19.99, 'assets/images/fliegende-schoenheit.jpg', 'photos', 30],
+            ['Tauben-Portrait', 'Nahaufnahme einer Taube mit beeindruckenden Details des Gefieders. Limitierte Edition.', 12.99, 'assets/images/tauben-portrait.jpg', 'photos', 25],
             
             // Tauben Merch (Pigeon Merchandise)
-            ['Tauben Power T-Shirt', 'Zeigen Sie Ihre Taubenliebe mit diesem stylischen Shirt. 100% Baumwolle, Größe: L', 24.95, 'https://ih1.redbubble.net/image.1810514256.7019/ra,kids_tee,x900,FFFFFF:97ab1c12de,front-pad,750x1000,f8f8f8.jpg', 'merch', 20],
-            ['Tauben Kaffeetasse', 'Starten Sie Ihren Tag mit dieser eleganten Tauben-Motiv Tasse. Spülmaschinenfest.', 14.95, 'https://m.media-amazon.com/images/I/51cGg-0MugL._AC_UL1000_.jpg', 'merch', 15],
-            ['Tauben Schlüsselanhänger', 'Ein praktischer Begleiter für jeden Taubenliebhaber. Aus robustem Metall.', 9.95, 'https://m.media-amazon.com/images/I/612fc5TOwIL._AC_UF1000,1000_QL80_.jpg', 'merch', 40],
+            ['Tauben Power T-Shirt', 'Zeigen Sie Ihre Taubenliebe mit diesem stylischen Shirt. 100% Baumwolle, Größe: L', 24.95, 'assets/images/tshirt.jpg', 'merch', 20],
+            ['Tauben Kaffeetasse', 'Starten Sie Ihren Tag mit dieser eleganten Tauben-Motiv Tasse. Spülmaschinenfest.', 14.95, 'assets/images/tauben-kaffeetasse.jpg', 'merch', 15],
+            ['Tauben Schlüsselanhänger', 'Ein praktischer Begleiter für jeden Taubenliebhaber. Aus robustem Metall.', 9.95, 'assets/images/tauben-schluesselanhaenger.jpg', 'merch', 40],
             
             // Tauben Kurse (Pigeon Courses)
-            ['Taubensprache verstehen', 'Lernen Sie die Grundlagen der Taubenkommunikation mit diesem umfassenden Online-Kurs. 4 Stunden Videomaterial.', 45.00, 'https://images.unsplash.com/photo-1549195100-86b8a8893060', 'courses', 100],
-            ['Taubenfotografie Meisterkurs', 'Erfassen Sie die Schönheit der Tauben mit professionellen Fotografietechniken. Inkl. E-Book und Presets.', 65.00, 'https://cdn.pixabay.com/photo/2017/07/18/18/24/dove-2516641_1280.jpg', 'courses', 50],
-            ['Tauben in der Stadt', 'Ein Online-Kurs über das Zusammenleben von Menschen und Tauben im urbanen Raum. Wissenschaftlich fundiert.', 35.00, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Rock_Pigeon_Columba_livia.jpg/1200px-Rock_Pigeon_Columba_livia.jpg', 'courses', 75]
+            ['Taubensprache verstehen', 'Lernen Sie die Grundlagen der Taubenkommunikation mit diesem umfassenden Online-Kurs. 4 Stunden Videomaterial.', 45.00, 'assets/images/taubensprache-verstehen.jpg', 'courses', 100],
+            ['Taubenfotografie Meisterkurs', 'Erfassen Sie die Schönheit der Tauben mit professionellen Fotografietechniken. Inkl. E-Book und Presets.', 65.00, 'assets/images/photography-course.jpg', 'courses', 50],
+            ['Tauben in der Stadt', 'Ein Online-Kurs über das Zusammenleben von Menschen und Tauben im urbanen Raum. Wissenschaftlich fundiert.', 35.00, 'assets/images/urban-pigeons.jpg', 'courses', 75]
         ];
 
         $stmt = $pdo->prepare("INSERT INTO products (name, description, price, image_url, category, stock_quantity) VALUES (?, ?, ?, ?, ?, ?)");
