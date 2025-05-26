@@ -154,7 +154,7 @@ A modern, premium e-commerce platform specializing in pigeon-related products in
    ```
 
 3. **Deploy Application**:
-   ```bash
+   ```bash  
    sudo git clone <repository-url> /var/www/html/agil-shop
    sudo chown -R www-data:www-data /var/www/html/agil-shop
    sudo chmod -R 755 /var/www/html/agil-shop
