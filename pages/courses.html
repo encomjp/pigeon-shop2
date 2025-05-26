@@ -90,7 +90,86 @@
                 </div>
             </section>
 
-            <!-- Removed instructor-profile section -->
+            <section class="reviews-section">
+                <h2>Was unsere Kunden sagen</h2>
+                <div class="reviews-carousel">
+                    <div class="reviews-container">
+                        <div class="review-card active">
+                            <div class="review-content">
+                                <div class="stars">★★★★★</div>
+                                <p>"I thought I knew pigeons, but this course taught me that they're actually secret government drones. Now I understand why they keep staring at me! 10/10 would recommend for conspiracy theorists."</p>
+                                <div class="reviewer">
+                                    <strong>Mr. Weindok</strong>
+                                    <span>Conspiracy Enthusiast</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="review-card">
+                            <div class="review-content">
+                                <div class="stars">★★★★☆</div>
+                                <p>"After taking this course, I can finally communicate with the pigeons in my garden. Turns out they've been complaining about my cooking for years. They prefer breadcrumbs over my gourmet bird seed mix. Who knew?"</p>
+                                <div class="reviewer">
+                                    <strong>Mr. Wiedmann</strong>
+                                    <span>Amateur Chef & Bird Whisperer</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="review-card">
+                            <div class="review-content">
+                                <div class="stars">★★★★★</div>
+                                <p>"This course changed my life! I learned that pigeons have a complex social hierarchy. I'm now the mayor of my local pigeon community. They elected me after I shared my sandwich with them daily for 3 months."</p>
+                                <div class="reviewer">
+                                    <strong>Mr. Strobel</strong>
+                                    <span>Pigeon Mayor & Sandwich Distributor</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="review-card">
+                            <div class="review-content">
+                                <div class="stars">★★★★★</div>
+                                <p>"I bought this course thinking it was about carrier pigeons for my postal service hobby. Instead, I learned how to start a pigeon taxi service. Business is booming! 5 stars for unexpected entrepreneurship!"</p>
+                                <div class="reviewer">
+                                    <strong>Ms. Schmidt</strong>
+                                    <span>Pigeon Taxi CEO</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="review-card">
+                            <div class="review-content">
+                                <div class="stars">★★★☆☆</div>
+                                <p>"The course was great, but I think I misunderstood something. I've been trying to teach pigeons to play chess for 6 months now. They keep eating the pieces. Will try again with plastic chess set."</p>
+                                <div class="reviewer">
+                                    <strong>Dr. Mueller</strong>
+                                    <span>Chess Instructor & Optimist</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="review-card">
+                            <div class="review-content">
+                                <div class="stars">★★★★★</div>
+                                <p>"Thanks to this course, I now have a pigeon personal trainer. Every morning at 6 AM, Gerald the pigeon pecks at my window until I go jogging. Lost 20 pounds! Best fitness program ever!"</p>
+                                <div class="reviewer">
+                                    <strong>Mr. Weber</strong>
+                                    <span>Fitness Enthusiast & Gerald's Human</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-indicators">
+                        <span class="indicator active" data-slide="0"></span>
+                        <span class="indicator" data-slide="1"></span>
+                        <span class="indicator" data-slide="2"></span>
+                        <span class="indicator" data-slide="3"></span>
+                        <span class="indicator" data-slide="4"></span>
+                        <span class="indicator" data-slide="5"></span>
+                    </div>
+                </div>
+            </section>
         </div>
     </main>
     
@@ -176,11 +255,221 @@
                 .info-card p {
                     color: var(--text-medium);
                     line-height: 1.6;
+                }                /* Reviews Section Styles */
+                .reviews-section {
+                    margin-top: 60px;
+                    text-align: center;
                 }
 
-                /* Removed Instructor Profile Styles */
-            `;
+                .reviews-section h2 {
+                    margin-bottom: 40px;
+                    color: var(--primary-color-dark);
+                }
+
+                .reviews-carousel {
+                    position: relative;
+                    max-width: 800px;
+                    margin: 0 auto;
+                    overflow: hidden;
+                    border-radius: 15px;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                }
+
+                .reviews-container {
+                    display: flex;
+                    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                    width: 600%; /* 6 reviews * 100% */
+                }
+
+                .review-card {
+                    flex: 0 0 16.666%; /* 100% / 6 reviews */
+                    padding: 40px 30px;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    color: white;
+                    text-align: center;
+                    min-height: 250px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                .review-card::before {
+                    content: '';
+                    position: absolute;
+                    top: -50%;
+                    left: -50%;
+                    width: 200%;
+                    height: 200%;
+                    background: conic-gradient(
+                        from 0deg,
+                        transparent 0deg,
+                        rgba(255,255,255,0.1) 60deg,
+                        transparent 120deg,
+                        rgba(255,255,255,0.1) 180deg,
+                        transparent 240deg,
+                        rgba(255,255,255,0.1) 300deg,
+                        transparent 360deg
+                    );
+                    animation: spin 8s linear infinite;
+                    pointer-events: none;
+                }
+
+                @keyframes spin {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
+                }
+
+                .review-content {
+                    position: relative;
+                    z-index: 2;
+                }
+
+                .stars {
+                    font-size: 1.5rem;
+                    color: #ffd700;
+                    margin-bottom: 20px;
+                    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+                }
+
+                .review-card p {
+                    font-size: 1.1rem;
+                    line-height: 1.6;
+                    margin-bottom: 25px;
+                    font-style: italic;
+                    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+                }
+
+                .reviewer strong {
+                    display: block;
+                    font-size: 1.2rem;
+                    margin-bottom: 5px;
+                    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+                }
+
+                .reviewer span {
+                    font-size: 0.9rem;
+                    opacity: 0.9;
+                    font-style: italic;
+                }
+
+                .carousel-indicators {
+                    display: flex;
+                    justify-content: center;
+                    gap: 10px;
+                    margin-top: 20px;
+                    padding: 15px 0;
+                }
+
+                .indicator {
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                    background-color: #ddd;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                .indicator.active {
+                    background-color: var(--accent-color);
+                    transform: scale(1.2);
+                }
+
+                .indicator::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+                    transition: left 0.6s ease;
+                }
+
+                .indicator.active::before {
+                    left: 100%;
+                }
+
+                /* Different background gradients for each review */
+                .review-card:nth-child(1) { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+                .review-card:nth-child(2) { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+                .review-card:nth-child(3) { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+                .review-card:nth-child(4) { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+                .review-card:nth-child(5) { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+                .review-card:nth-child(6) { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); }
+
+                /* Responsive adjustments */
+                @media (max-width: 768px) {
+                    .review-card {
+                        padding: 30px 20px;
+                        min-height: 200px;
+                    }
+                    
+                    .review-card p {
+                        font-size: 1rem;
+                    }
+                }            `;
             document.head.appendChild(style);
+            
+            // Initialize reviews carousel
+            const reviewsContainer = document.querySelector('.reviews-container');
+            const indicators = document.querySelectorAll('.indicator');
+            const reviewCards = document.querySelectorAll('.review-card');
+            
+            if (reviewsContainer && indicators.length > 0) {
+                let currentSlide = 0;
+                const totalSlides = reviewCards.length;
+                
+                // Function to show specific slide
+                function showSlide(index) {
+                    const translateX = -index * 16.666; // Each slide is 16.666% width
+                    reviewsContainer.style.transform = `translateX(${translateX}%)`;
+                    
+                    // Update indicators
+                    indicators.forEach((indicator, i) => {
+                        indicator.classList.toggle('active', i === index);
+                    });
+                    
+                    currentSlide = index;
+                }
+                
+                // Function to go to next slide
+                function nextSlide() {
+                    currentSlide = (currentSlide + 1) % totalSlides;
+                    showSlide(currentSlide);
+                }
+                
+                // Auto-advance carousel every 4 seconds
+                let autoSlideInterval = setInterval(nextSlide, 4000);
+                
+                // Add click events to indicators
+                indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('click', () => {
+                        showSlide(index);
+                        // Reset auto-advance timer
+                        clearInterval(autoSlideInterval);
+                        autoSlideInterval = setInterval(nextSlide, 4000);
+                    });
+                });
+                
+                // Pause auto-advance on hover
+                const carousel = document.querySelector('.reviews-carousel');
+                if (carousel) {
+                    carousel.addEventListener('mouseenter', () => {
+                        clearInterval(autoSlideInterval);
+                    });
+                    
+                    carousel.addEventListener('mouseleave', () => {
+                        autoSlideInterval = setInterval(nextSlide, 4000);
+                    });
+                }
+                
+                // Initialize first slide
+                showSlide(0);
+            }
             
             // Hide loading indicator when products are loaded
             if (coursesContainer && coursesContainer.children.length > 0) {
