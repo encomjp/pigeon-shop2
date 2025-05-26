@@ -410,7 +410,7 @@
                 }
 
                 .review-card {
-                    flex: 0 0 calc(100% / 9); /* 9 cards total, each takes 1/9th of container */
+                    flex: 0 0 calc(100% / 9); /* Each card takes 1/9 of the total width (33.33% / 3 = 11.11%) */
                     padding: 40px 25px;
                     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
                     color: white;
@@ -423,7 +423,7 @@
                     overflow: hidden;
                     border-radius: 15px;
                     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-                    margin: 0 10px;
+                    margin: 0 10px; /* Add consistent spacing between cards */
                 }
 
                 .review-card::before {
@@ -556,12 +556,11 @@
             
             if (reviewsContainer && indicators.length > 0) {
                 let currentSlide = 0;
-                const totalSlides = reviewCards.length;
-                  // Function to show specific slide
+                const totalSlides = reviewCards.length;                  // Function to show specific slide
                 function showSlide(index) {
                     // Show groups of 3 cards: group 0 = cards 0-2, group 1 = cards 3-5, group 2 = cards 6-8
                     const groupIndex = Math.floor(index / 3);
-                    const translateX = -groupIndex * 100; // Move by 100% to show next group of 3
+                    const translateX = -groupIndex * (100 / 3); // Move by 33.33% to show next group of 3 (100% / 3 groups)
                     reviewsContainer.style.transform = `translateX(${translateX}%)`;
                       // Update indicators - show active based on current group
                     const currentGroup = Math.floor(index / 3);
