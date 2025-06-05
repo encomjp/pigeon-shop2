@@ -69,6 +69,7 @@ ob_start();
       <input type="text" name="card_number" pattern="\d{16}">
     </label>
   </div>
+  <p><a class="button" href="cart.php">Zur\xC3\xBCck zum Warenkorb</a></p>
   <button type="submit">Bestellung abschicken</button>
 </form>
 <?php
