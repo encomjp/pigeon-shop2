@@ -11,11 +11,11 @@ ob_start();
 <?php $sum = 0; foreach ($cart as $item): $sum += $item['product']['price']*$item['qty']; ?>
   <div class="cart-item">
     <?= htmlspecialchars($item['product']['name']) ?> x <?= $item['qty'] ?> - €<?= number_format($item['product']['price']*$item['qty'],2) ?>
-    <a href="remove_from_cart.php?id=<?= $item['product']['id'] ?>">Entfernen</a>
+    <a class="button" href="remove_from_cart.php?id=<?= $item['product']['id'] ?>">Entfernen</a>
   </div>
 <?php endforeach; ?>
 <p><strong>Gesamt: €<?= number_format($sum,2) ?></strong></p>
-<a href="checkout.php">Zur Kasse</a>
+<a class="button" href="checkout.php">Zur Kasse</a>
 <?php endif; ?>
 <?php
 $content = ob_get_clean();

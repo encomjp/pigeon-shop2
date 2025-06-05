@@ -22,7 +22,7 @@ ob_start();
 <?php else: ?>
 <p>Bestellung nicht gefunden.</p>
 <?php endif; ?>
-<a href="/index.php">Weiter einkaufen</a>
+<a class="button" href="/index.php">Weiter einkaufen</a>
 <?php
 $content = ob_get_clean();
 include __DIR__.'/../app.php';
