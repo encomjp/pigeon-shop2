@@ -20,6 +20,8 @@ ob_start();
 </form>
 <?php if ($result): ?>
 <p>Bestellung von <?= htmlspecialchars($result['customer']['name']) ?> gefunden.</p>
+<p>Adresse: <?= htmlspecialchars($result['customer']['street']) ?> <?= htmlspecialchars($result['customer']['house_number']) ?>, <?= htmlspecialchars($result['customer']['zip']) ?> <?= htmlspecialchars($result['customer']['city']) ?></p>
+<p>Zahlungsart: <?= htmlspecialchars($result['payment']['type']) ?></p>
 <?php elseif($_SERVER['REQUEST_METHOD']==='POST'): ?>
 <p>Keine Bestellung gefunden.</p>
 <?php endif; ?>

@@ -14,6 +14,11 @@ ob_start();
 <?php if ($order): ?>
 <p>Vielen Dank, <?= htmlspecialchars($order['customer']['name']) ?>!</p>
 <p>Ihre Bestellnummer lautet <?= $order['id'] ?>.</p>
+<p>Lieferadresse:<br>
+  <?= htmlspecialchars($order['customer']['street']) ?> <?= htmlspecialchars($order['customer']['house_number']) ?><br>
+  <?= htmlspecialchars($order['customer']['zip']) ?> <?= htmlspecialchars($order['customer']['city']) ?>
+</p>
+<p>Zahlungsart: <?= htmlspecialchars($order['payment']['type']) ?></p>
 <?php else: ?>
 <p>Bestellung nicht gefunden.</p>
 <?php endif; ?>
