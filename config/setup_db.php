@@ -90,10 +90,6 @@ try {
             ['Tauben Kaffeetasse', 'Starten Sie Ihren Tag mit dieser eleganten Tauben-Motiv Tasse. Spülmaschinenfest.', 14.95, '/assets/images/tauben-kaffeetasse.jpg', 'merch', 15],
             ['Tauben Schlüsselanhänger', 'Ein praktischer Begleiter für jeden Taubenliebhaber. Aus robustem Metall.', 9.95, '/assets/images/tauben-schluesselanhaenger.jpg', 'merch', 40],
             
-            // Tauben Kurse (Pigeon Courses)
-            ['Taubensprache verstehen', 'Lernen Sie die Grundlagen der Taubenkommunikation mit diesem umfassenden Online-Kurs. 4 Stunden Videomaterial.', 45.00, '/assets/images/taubensprache-verstehen.jpg', 'courses', 100],
-            ['Taubenfotografie Meisterkurs', 'Erfassen Sie die Schönheit der Tauben mit professionellen Fotografietechniken. Inkl. E-Book und Presets.', 65.00, '/assets/images/photography-course.jpg', 'courses', 50],
-            ['Tauben in der Stadt', 'Ein Online-Kurs über das Zusammenleben von Menschen und Tauben im urbanen Raum. Wissenschaftlich fundiert.', 35.00, '/assets/images/urban-pigeons.jpg', 'courses', 75]
         ];
 
         $stmt = $pdo->prepare("INSERT INTO products (name, description, price, image_url, category, stock_quantity) VALUES (?, ?, ?, ?, ?, ?)");

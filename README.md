@@ -1,6 +1,6 @@
 # Agil Shop 🕊️
 
-A modern, premium e-commerce platform specializing in pigeon-related products including professional photography, exclusive merchandise, and comprehensive online courses. Built with cutting-edge web technologies and featuring a glassmorphism design aesthetic.
+A modern, premium e-commerce platform specializing in pigeon-related products including professional photography and exclusive merchandise. Built with cutting-edge web technologies and featuring a glassmorphism design aesthetic.
 
 ## Table of Contents
 - [Key Features](#key-features)
@@ -40,7 +40,7 @@ A modern, premium e-commerce platform specializing in pigeon-related products in
 - **Advanced shopping cart** with persistent localStorage
 - **Streamlined checkout** process with form validation
 - **Order management** system with transaction tracking
-- **Product categories**: Professional photos, branded merchandise, educational courses
+- **Product categories**: Professional photos and branded merchandise
 
 ### 🔧 **Technical Excellence**
 - **RESTful API** architecture with PHP backend
@@ -61,23 +61,22 @@ A modern, premium e-commerce platform specializing in pigeon-related products in
 
 ```
 📁 Agil Shop/
-├── 🏠 index.html                    # Modern homepage with hero section & testimonials
+├── 🏠 index.php                    # Modern homepage with hero section
 ├── 📋 README.md                     # This comprehensive documentation
 ├── 🗄️ shop_database.db             # SQLite database file
 │
 ├── 📄 pages/                        # Category & information pages
-│   ├── 📸 photos.html               # Professional pigeon photography gallery
-│   ├── 👕 merch.html                # Branded merchandise collection
-│   ├── 🎓 courses.html              # Educational course offerings
-│   ├── 🔍 product-detail.html       # Enhanced product detail page
-│   ├── ⚖️ impressum.html            # Legal imprint (German compliance)
-│   └── 🔒 datenschutz.html          # Privacy policy (GDPR compliant)
+│   ├── 📸 photos.php               # Professional pigeon photography gallery
+│   ├── 👕 merch.php                # Branded merchandise collection
+│   ├── 🔍 product-detail.php       # Enhanced product detail page
+│   ├── ⚖️ impressum.php            # Legal imprint (German compliance)
+│   └── 🔒 datenschutz.php          # Privacy policy (GDPR compliant)
 │
 ├── 🛒 bestellung/                   # Complete order management system
-│   ├── 🛍️ cart.html                 # Modern shopping cart interface
-│   ├── 💳 checkout.html             # Streamlined checkout process
-│   ├── ✅ order-confirmation.html   # Order success confirmation
-│   └── 📦 order-tracking.html       # Real-time order tracking
+│   ├── 🛍️ cart.php                 # Modern shopping cart interface
+│   ├── 💳 checkout.php             # Streamlined checkout process
+│   ├── ✅ order-confirmation.php   # Order success confirmation
+│   └── 📦 order-tracking.php       # Real-time order tracking
 │
 ├── 🎨 css/                          # Styling & design system
 │   └── 💎 style.css                # Modern CSS with custom properties & animations
@@ -226,11 +225,10 @@ $password = $_ENV['DB_PASS'] ?? '';
 ### 🏠 **Homepage Experience**
 - **Hero Section**: Animated GIF background with call-to-action buttons
 - **Featured Products**: Dynamic grid showcasing popular items
-- **Testimonials**: Customer reviews with animated cards
 - **Modern Navigation**: Dropdown menus with hover effects
 
 ### 🛍️ **Shopping Flow**
-1. **Browse Categories**: Photos, Merch, or Courses
+1. **Browse Categories**: Photos or Merch
 2. **Product Details**: Enhanced product pages with breadcrumbs
 3. **Add to Cart**: Real-time cart updates with animations
 4. **Checkout**: Streamlined form with validation
@@ -250,7 +248,7 @@ $password = $_ENV['DB_PASS'] ?? '';
 Retrieve product information with filtering options.
 
 **Parameters:**
-- `category` (optional): Filter by 'photos', 'merch', or 'courses'
+- `category` (optional): Filter by 'photos' or 'merch'
 - `id` (optional): Get specific product by ID
 
 **Response:**

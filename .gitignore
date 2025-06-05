@@ -1,0 +1,8 @@
+# Ignore OS junk
+.DS_Store
+
+# Ignore database file
+shop_database.db
+
+# Ignore PowerShell scripts
+*.ps1

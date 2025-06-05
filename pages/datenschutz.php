@@ -1,53 +1,7 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Datenschutzerklärung - Agil Shop</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <style>
-        /* Basic styles for legal pages */
-        .legal-content {
-            background-color: var(--primary-color);
-            padding: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            border: 1px solid var(--border-color);
-            line-height: 1.8;
-        }
-        .legal-content h3 {
-            margin-top: 20px;
-            margin-bottom: 10px;
-            font-size: 1.4rem;
-        }
-        .legal-content p, .legal-content ul {
-            margin-bottom: 15px;
-        }
-        .legal-content ul {
-            padding-left: 20px;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <div class="container">
-            <h1><a href="../index.html" style="color: inherit; text-decoration: none;">Agil Shop</a></h1>
-            <nav>
-                 <ul>
-                    <li><a href="../index.html">Startseite</a></li>
-                    <li> <!-- Produkte Dropdown -->
-                        <a href="#">Produkte</a>
-                        <ul>
-                            <li><a href="photos.html">Taubenfotos</a></li>
-                            <li><a href="merch.html">Tauben Merch</a></li>
-                            <li><a href="courses.html">Kurse</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="../bestellung/cart.html">Warenkorb</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<?php
+$title = 'Datenschutz - Agil Shop';
+ob_start();
+?>
 
     <main>
         <div class="container">
@@ -101,18 +55,7 @@
         </div>
     </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Agil Shop</p>
-             <nav>
-                 <ul>
-                    <li><a href="impressum.html">Impressum</a></li>
-                    <li><a href="datenschutz.html" class="active">Datenschutz</a></li>
-                </ul>
-            </nav>
-        </div>
-    </footer>
-
-    <script src="../js/script.js"></script>
-</body>
-</html>
+<?php
+$content = ob_get_clean();
+include __DIR__ . '/../app.php';
+?>
