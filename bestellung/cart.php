@@ -2,8 +2,17 @@
 session_start();
 $cart = $_SESSION['cart'] ?? [];
 $title = 'Warenkorb';
-ob_start();
 ?>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title><?= htmlspecialchars($title) ?></title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<?php include __DIR__.'/../header.php'; ?>
+<div class="container">
 <h1>Warenkorb</h1>
 <?php if (!$cart): ?>
 <p>Der Warenkorb ist leer.</p>
@@ -17,7 +26,8 @@ ob_start();
 <p><strong>Gesamt: €<?= number_format($sum,2) ?></strong></p>
 <a class="button" href="checkout.php">Zur Kasse</a>
 <?php endif; ?>
-<?php
-$content = ob_get_clean();
-include __DIR__.'/../app.php';
-?>
+</div>
+<?php include __DIR__.'/../footer.php'; ?>
+<script src="/js/main.js"></script>
+</body>
+</html>

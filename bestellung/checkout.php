@@ -34,8 +34,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 $title = 'Kasse';
-ob_start();
 ?>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title><?= htmlspecialchars($title) ?></title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<?php include __DIR__.'/../header.php'; ?>
+<div class="container">
 <h1>Kasse</h1>
 <form method="post" data-autosave="true">
   <?php if ($error): ?>
@@ -73,7 +82,8 @@ ob_start();
   <p><a class="button" href="cart.php">Zurück zum Warenkorb</a></p>
   <button type="submit">Bestellung abschicken</button>
 </form>
-<?php
-$content = ob_get_clean();
-include __DIR__.'/../app.php';
-?>
+</div>
+<?php include __DIR__.'/../footer.php'; ?>
+<script src="/js/main.js"></script>
+</body>
+</html>
