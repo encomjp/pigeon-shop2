@@ -1,37 +1,28 @@
 <?php
-$title = 'Bestellbestätigung - Agil Shop';
+session_start();
+require_once __DIR__.'/../helpers.php';
+$id = (int)($_GET['id'] ?? 0);
+$orders = loadOrders();
+$order = null;
+foreach ($orders as $o) {
+    if ($o['id'] == $id) { $order = $o; break; }
+}
+$title = 'Bestätigung';
 ob_start();
 ?>
-    
-    <main>
-        <div class="container">
-            <section class="order-confirmation">
-                <div class="success-message">
-                    <i class="fas fa-check-circle success-icon"></i>
-                    <h2>Vielen Dank für Ihre Bestellung!</h2>
-                    <p>Ihre Bestellung wurde erfolgreich aufgegeben und wird bearbeitet.</p>
-                    
-                    <div id="transaction-details" class="transaction-details">
-                        <h3>Ihre Transaktions-ID:</h3>
-                        <div class="transaction-id" id="confirmation-transaction-id">
-                            <!-- Transaction ID will be inserted here via JavaScript -->
-                        </div>
-                        <p>Bitte bewahren Sie diese ID für die Nachverfolgung Ihrer Bestellung auf.</p>
-                    </div>
-                    
-                    <div class="next-steps">
-                        <p>Was möchten Sie als nächstes tun?</p>
-                        <div class="button-group">
-                            <a href="//index.php" class="btn btn-secondary"><i class="fas fa-home"></i> Zurück zur Startseite</a>
-                            <a href="order-tracking.html" class="btn btn-primary"><i class="fas fa-search"></i> Bestellung verfolgen</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
-    
+<h1>Bestellung bestätigt</h1>
+<?php if ($order): ?>
+<p>Vielen Dank, <?= htmlspecialchars($order['customer']['name']) ?>!</p>
+<p>Ihre Bestellnummer lautet <?= $order['id'] ?>.</p>
+<p>Wir versenden an:<br>
+<?= htmlspecialchars($order['customer']['street']) ?> <?= htmlspecialchars($order['customer']['house_number']) ?><br>
+<?= htmlspecialchars($order['customer']['city']) ?></p>
+<p>Zahlungsart: <?= htmlspecialchars($order['customer']['payment']) ?></p>
+<?php else: ?>
+<p>Bestellung nicht gefunden.</p>
+<?php endif; ?>
+<a href="/index.php">Weiter einkaufen</a>
 <?php
 $content = ob_get_clean();
-include __DIR__ . '/../app.php';
+include __DIR__.'/../app.php';
 ?>
