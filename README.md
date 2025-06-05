@@ -61,23 +61,23 @@ A modern, premium e-commerce platform specializing in pigeon-related products in
 
 ```
 📁 Agil Shop/
-├── 🏠 index.html                    # Modern homepage with hero section & testimonials
+├── 🏠 index.php                    # Modern homepage with hero section & testimonials
 ├── 📋 README.md                     # This comprehensive documentation
 ├── 🗄️ shop_database.db             # SQLite database file
 │
 ├── 📄 pages/                        # Category & information pages
-│   ├── 📸 photos.html               # Professional pigeon photography gallery
-│   ├── 👕 merch.html                # Branded merchandise collection
-│   ├── 🎓 courses.html              # Educational course offerings
-│   ├── 🔍 product-detail.html       # Enhanced product detail page
-│   ├── ⚖️ impressum.html            # Legal imprint (German compliance)
-│   └── 🔒 datenschutz.html          # Privacy policy (GDPR compliant)
+│   ├── 📸 photos.php               # Professional pigeon photography gallery
+│   ├── 👕 merch.php                # Branded merchandise collection
+│   ├── 🎓 courses.php              # Educational course offerings
+│   ├── 🔍 product-detail.php       # Enhanced product detail page
+│   ├── ⚖️ impressum.php            # Legal imprint (German compliance)
+│   └── 🔒 datenschutz.php          # Privacy policy (GDPR compliant)
 │
 ├── 🛒 bestellung/                   # Complete order management system
-│   ├── 🛍️ cart.html                 # Modern shopping cart interface
-│   ├── 💳 checkout.html             # Streamlined checkout process
-│   ├── ✅ order-confirmation.html   # Order success confirmation
-│   └── 📦 order-tracking.html       # Real-time order tracking
+│   ├── 🛍️ cart.php                 # Modern shopping cart interface
+│   ├── 💳 checkout.php             # Streamlined checkout process
+│   ├── ✅ order-confirmation.php   # Order success confirmation
+│   └── 📦 order-tracking.php       # Real-time order tracking
 │
 ├── 🎨 css/                          # Styling & design system
 │   └── 💎 style.css                # Modern CSS with custom properties & animations
