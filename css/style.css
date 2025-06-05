@@ -4,12 +4,28 @@ body {
   padding: 0;
   background: #ecf0f1;
   color: #2c3e50;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 header, footer {
   background: #34495e;
   color: #fff;
   padding: 10px 0;
+}
+
+header .container {
+  display: flex;
+  align-items: center;
+}
+
+header img {
+  margin-right: 15px;
+}
+
+footer {
+  margin-top: auto;
 }
 
 header a, footer a {
@@ -33,6 +49,10 @@ a:hover {
   margin: 20px auto;
 }
 
+body > .container {
+  flex: 1;
+}
+
 .product {
   background: #fff;
   border: 1px solid #ddd;
@@ -40,6 +60,11 @@ a:hover {
   padding: 15px;
   margin-bottom: 15px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.product img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
 }
 
 .cart-item {
