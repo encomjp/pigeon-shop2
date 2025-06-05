@@ -8,8 +8,17 @@ foreach ($orders as $o) {
     if ($o['id'] == $id) { $order = $o; break; }
 }
 $title = 'Bestätigung';
-ob_start();
 ?>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title><?= htmlspecialchars($title) ?></title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<?php include __DIR__.'/../header.php'; ?>
+<div class="container">
 <h1>Bestellung bestätigt</h1>
 <?php if ($order): ?>
 <p>Vielen Dank, <?= htmlspecialchars($order['customer']['name']) ?>!</p>
@@ -30,7 +39,8 @@ ob_start();
 <p>Bestellung nicht gefunden.</p>
 <?php endif; ?>
 <a class="button" href="/index.php">Weiter einkaufen</a>
-<?php
-$content = ob_get_clean();
-include __DIR__.'/../app.php';
-?>
+</div>
+<?php include __DIR__.'/../footer.php'; ?>
+<script src="/js/main.js"></script>
+</body>
+</html>

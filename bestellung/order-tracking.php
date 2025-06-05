@@ -9,8 +9,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 $title = 'Bestellung verfolgen';
-ob_start();
 ?>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title><?= htmlspecialchars($title) ?></title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<?php include __DIR__.'/../header.php'; ?>
+<div class="container">
 <h1>Bestellung verfolgen</h1>
 <form method="post">
   <label>Bestellnummer
@@ -32,7 +41,8 @@ ob_start();
 <?php elseif($_SERVER['REQUEST_METHOD']==='POST'): ?>
 <p>Keine Bestellung gefunden.</p>
 <?php endif; ?>
-<?php
-$content = ob_get_clean();
-include __DIR__.'/../app.php';
-?>
+</div>
+<?php include __DIR__.'/../footer.php'; ?>
+<script src="/js/main.js"></script>
+</body>
+</html>
