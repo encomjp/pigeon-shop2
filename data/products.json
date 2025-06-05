@@ -1,0 +1,5 @@
+[
+  {"id": 1, "name": "Taubenfoto", "price": 5.99, "description": "Hochwertiges Foto einer Taube."},
+  {"id": 2, "name": "Tauben T-Shirt", "price": 14.99, "description": "Shirt mit Taubenmotiv."},
+  {"id": 3, "name": "Taubenkurs", "price": 29.99, "description": "Grundkurs zur Taubenhaltung."}
+]

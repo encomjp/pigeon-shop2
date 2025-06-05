@@ -1,29 +1,29 @@
 <?php
-$title = 'Bestellung verfolgen - Agil Shop';
+session_start();
+require_once __DIR__.'/../helpers.php';
+$result = null;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id = (int)($_POST['id'] ?? 0);
+    foreach (loadOrders() as $o) {
+        if ($o['id'] == $id) { $result = $o; break; }
+    }
+}
+$title = 'Bestellung verfolgen';
 ob_start();
 ?>
-    
-    <main>
-        <div class="container">
-            <section class="order-tracking">
-                <h2>Bestellverfolgung</h2>
-                <p>Geben Sie Ihre Transaktions-ID ein, um den Status Ihrer Bestellung zu überprüfen.</p>
-                
-                <form id="order-tracking-form" class="tracking-form">
-                    <div class="form-group">
-                        <input type="text" id="transaction-id" name="transaction-id" placeholder="Bitte geben Sie Ihre Transaktions-ID ein" required>
-                        <button type="submit" class="btn">Bestellung suchen</button>
-                    </div>
-                </form>
-                
-                <div id="order-details">
-                    <!-- Order details will be displayed here via JavaScript -->
-                </div>
-            </section>
-        </div>
-    </main>
-    
+<h1>Bestellung verfolgen</h1>
+<form method="post">
+  <label>Bestellnummer
+    <input type="number" name="id" required>
+  </label>
+  <button type="submit">Suchen</button>
+</form>
+<?php if ($result): ?>
+<p>Bestellung von <?= htmlspecialchars($result['customer']['name']) ?> gefunden.</p>
+<?php elseif($_SERVER['REQUEST_METHOD']==='POST'): ?>
+<p>Keine Bestellung gefunden.</p>
+<?php endif; ?>
 <?php
 $content = ob_get_clean();
-include __DIR__ . '/../app.php';
+include __DIR__.'/../app.php';
 ?>
