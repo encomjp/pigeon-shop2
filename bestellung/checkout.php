@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $payment = $_POST['payment'] ?? 'per-post';
     $card    = $_POST['card_number'] ?? '';
     if ($payment === 'kreditkarte' && !preg_match('/^\d{16}$/', $card)) {
-        $error = 'Bitte eine g\xC3\xBCltige Kreditkartennummer eingeben.';
+        $error = 'Bitte eine gültige Kreditkartennummer eingeben.';
     } else {
         $orders = loadOrders();
         $orderId = count($orders) + 1;
@@ -47,7 +47,7 @@ ob_start();
   <label>Email
     <input type="email" name="email" required>
   </label>
-  <label>Stra\xC3\x9Fe
+  <label>Straße
     <input type="text" name="street" required>
   </label>
   <label>Hausnummer
@@ -70,7 +70,7 @@ ob_start();
       <input type="text" name="card_number" pattern="\d{16}">
     </label>
   </div>
-  <p><a class="button" href="cart.php">Zur\xC3\xBCck zum Warenkorb</a></p>
+  <p><a class="button" href="cart.php">Zurück zum Warenkorb</a></p>
   <button type="submit">Bestellung abschicken</button>
 </form>
 <?php
