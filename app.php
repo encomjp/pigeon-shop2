@@ -11,5 +11,6 @@
 <?php echo $content ?? ''; ?>
 </div>
 <?php include __DIR__.'/footer.php'; ?>
+<script src="/js/main.js"></script>
 </body>
 </html>
