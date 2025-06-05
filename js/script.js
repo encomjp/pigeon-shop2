@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCartDisplay();
     };
     
-    // Function to update the cart display on cart.html
+    // Function to update the cart display on cart.php
     const updateCartDisplay = () => {
         if (!cartItemsContainer || !cartTotalContainer || !checkoutBtn) return; // Only run on cart page
         
@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 productItem.classList.add('product-item', 'fade-in');
                 
                 productItem.innerHTML = `
-                    <a href="/pages/product-detail.html?id=${product.id}" class="product-link">
+                    <a href="/pages/product-detail.php?id=${product.id}" class="product-link">
                         <img src="${product.image_url}" alt="${product.name}">
                         <div class="product-info">
                             <h3>${product.name}</h3>
@@ -259,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- Product Detail Page Logic ---
     const productDetailContainer = document.getElementById('product-detail');
-    if (productDetailContainer && window.location.pathname.includes('product-detail.html')) {
+    if (productDetailContainer && window.location.pathname.includes('product-detail.php')) {
         const params = new URLSearchParams(window.location.search);
         const productId = params.get('id');
         
@@ -295,9 +295,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     // Update category link in breadcrumb
                     const categoryPages = {
-                        'photos': { url: 'photos.html', name: 'Taubenfotos' },
-                        'merch': { url: 'merch.html', name: 'Tauben Merch' },
-                        'courses': { url: 'courses.html', name: 'Kurse' }
+                        'photos': { url: 'photos.php', name: 'Taubenfotos' },
+                        'merch': { url: 'merch.php', name: 'Tauben Merch' }
                     };
                     
                     if (categoryPages[product.category]) {
@@ -386,17 +385,11 @@ document.addEventListener('DOMContentLoaded', () => {
         loadProducts('merch', merchContainer);
     }
     
-    // Courses page
-    const coursesContainer = document.getElementById('courses-container');
-    if (coursesContainer) {
-        console.log("Found courses container, loading products");
-        loadProducts('courses', coursesContainer);
-    }
     
     // Featured products on homepage
     const featuredProductsContainer = document.querySelector('.featured-products .product-grid');
     if (featuredProductsContainer) {
-        if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname === '') {
+        if (window.location.pathname.endsWith('index.php') || window.location.pathname === '/' || window.location.pathname === '') {
             console.log("Found featured products container on homepage, loading products");
             loadProducts(null, featuredProductsContainer);
         }
@@ -454,7 +447,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // Redirect to a confirmation page with the order ID
                 // Make sure this path is correct based on your project structure
-                window.location.href = '/bestellung/order-confirmation.html';
+                window.location.href = '/bestellung/order-confirmation.php';
                 
             } catch (error) {
                 console.error("Error placing order:", error);

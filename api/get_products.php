@@ -17,7 +17,7 @@ try {
     }
     
     // Validate category if provided
-    $allowed_categories = ['photos', 'merch', 'courses'];
+    $allowed_categories = ['photos', 'merch'];
     if ($category !== null && !in_array($category, $allowed_categories)) {
         throw new Exception("Ungültige Kategorie", 400);
     }
