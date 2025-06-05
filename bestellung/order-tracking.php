@@ -22,6 +22,13 @@ ob_start();
 <p>Bestellung von <?= htmlspecialchars($result['customer']['name']) ?> gefunden.</p>
 <p>Adresse: <?= htmlspecialchars($result['customer']['street']) ?> <?= htmlspecialchars($result['customer']['house_number']) ?>, <?= htmlspecialchars($result['customer']['zip']) ?> <?= htmlspecialchars($result['customer']['city']) ?></p>
 <p>Zahlungsart: <?= htmlspecialchars($result['payment']['type']) ?></p>
+<h2>Produkte</h2>
+<ul>
+  <?php foreach ($result['items'] as $item): ?>
+    <li><?= htmlspecialchars($item['product']['name']) ?> x <?= $item['qty'] ?></li>
+  <?php endforeach; ?>
+</ul>
+<p>Status: <strong><?= htmlspecialchars($result['status'] ?? 'Unbekannt') ?></strong></p>
 <?php elseif($_SERVER['REQUEST_METHOD']==='POST'): ?>
 <p>Keine Bestellung gefunden.</p>
 <?php endif; ?>

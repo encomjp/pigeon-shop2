@@ -19,6 +19,13 @@ ob_start();
   <?= htmlspecialchars($order['customer']['zip']) ?> <?= htmlspecialchars($order['customer']['city']) ?>
 </p>
 <p>Zahlungsart: <?= htmlspecialchars($order['payment']['type']) ?></p>
+<h2>Produkte</h2>
+<ul>
+  <?php foreach ($order['items'] as $item): ?>
+    <li><?= htmlspecialchars($item['product']['name']) ?> x <?= $item['qty'] ?></li>
+  <?php endforeach; ?>
+</ul>
+<p>Status: <strong><?= htmlspecialchars($order['status'] ?? 'In Bearbeitung') ?></strong></p>
 <?php else: ?>
 <p>Bestellung nicht gefunden.</p>
 <?php endif; ?>

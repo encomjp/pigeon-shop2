@@ -24,7 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'city' => $_POST['city']
             ],
             'payment' => ['type' => $payment, 'card_number' => $payment === 'kreditkarte' ? $card : null],
-            'items' => $cart
+            'items' => $cart,
+            'status' => 'In Bearbeitung'
         ];
         saveOrders($orders);
         $_SESSION['cart'] = [];
