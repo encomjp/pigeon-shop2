@@ -13,6 +13,13 @@ function loadOrders() {
 
 function saveOrders($orders) {
     $file = __DIR__ . '/data/orders.json';
-    file_put_contents($file, json_encode($orders, JSON_PRETTY_PRINT));
+    if (!is_dir(dirname($file))) {
+        mkdir(dirname($file), 0755, true);
+    }
+    $result = file_put_contents($file, json_encode($orders, JSON_PRETTY_PRINT));
+    if ($result === false) {
+        error_log("Failed to save orders to: " . $file);
+        throw new Exception("Bestellung konnte nicht gespeichert werden. Bitte versuchen Sie es erneut.");
+    }
 }
 ?>
