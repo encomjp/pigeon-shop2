@@ -17,7 +17,6 @@ $title = 'Produkte';
 <h1>Produkte</h1>
 <?php foreach ($products as $p): ?>
   <div class="product">
-    <img src="<?= htmlspecialchars($img) ?>" alt="<?= htmlspecialchars($p['name']) ?>">
     <h3><?= htmlspecialchars($p['name']) ?></h3>
     <p><?= htmlspecialchars($p['description']) ?></p>
     <p>Preis: €<?= number_format($p['price'],2) ?></p>
