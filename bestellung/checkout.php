@@ -1,20 +1,25 @@
 <?php
+// Checkout-Seite - verarbeitet Bestellungen und Kundendaten
 session_start();
 require_once __DIR__.'/../helpers.php';
+
+// Überprüfe ob Warenkorb existiert, sonst zurück zur Warenkorb-Seite
 $cart = $_SESSION['cart'] ?? [];
 if (!$cart) { header('Location: cart.php'); exit; }
 
+// Variablen für Fehlerbehandlung und Debugging
 $error = '';
 $debug_info = '';
 
+// Verarbeite Formular-Übermittlung
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $debug_info .= "Form submitted. ";
     $payment = $_POST['payment'] ?? 'per-post';
-    $card    = preg_replace('/\D/', '', $_POST['card_number'] ?? ''); // Remove non-digits
+    $card    = preg_replace('/\D/', '', $_POST['card_number'] ?? ''); // Entferne Nicht-Ziffern
     
     $debug_info .= "Payment method: $payment. ";
     
-    // Validate required fields
+    // Validiere Pflichtfelder
     $required_fields = ['name', 'email', 'street', 'house_number', 'zip', 'city'];
     foreach ($required_fields as $field) {
         if (empty($_POST[$field])) {
@@ -24,11 +29,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
     
+    // Validiere Kreditkartennummer falls Kreditkarte gewählt
     if (!$error && $payment === 'kreditkarte' && !preg_match('/^\d{16}$/', $card)) {
         $error = 'Bitte eine gültige 16-stellige Kreditkartennummer eingeben.';
         $debug_info .= "Invalid card number. Length: " . strlen($card) . ". ";
     }
     
+    // Speichere Bestellung falls keine Fehler
     if (!$error) {
         try {
             $debug_info .= "Attempting to save order. ";
@@ -36,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $orderId = count($orders) + 1;
             $debug_info .= "Order ID: $orderId. ";
             
+            // Erstelle neue Bestellung
             $orders[] = [
                 'id' => $orderId,
                 'customer' => [
@@ -55,8 +63,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'date' => date('Y-m-d H:i:s')
             ];
             
+            // Speichere Bestellung in JSON-Datei
             saveOrders($orders);
             $debug_info .= "Order saved successfully. ";
+            
+            // Leere Warenkorb und weiter zur Bestätigungsseite
             $_SESSION['cart'] = [];
             header('Location: order-confirmation.php?id='.$orderId);
             exit;
@@ -81,16 +92,20 @@ $title = 'Kasse';
 <h1>Kasse</h1>
 
 <?php if ($debug_info && isset($_GET['debug'])): ?>
+    <!-- Debug-Informationen anzeigen falls URL-Parameter vorhanden -->
     <div style="background: #e7f3ff; padding: 10px; border: 1px solid #b3d9ff; margin-bottom: 15px;">
         <strong>Debug Info:</strong> <?= htmlspecialchars($debug_info) ?>
     </div>
 <?php endif; ?>
 
+<!-- Bestellformular mit Auto-Speichern -->
 <form method="post" data-autosave="true">
   <?php if ($error): ?>
+    <!-- Fehlermeldung anzeigen -->
     <div class="error"><?= htmlspecialchars($error) ?></div>
   <?php endif; ?>
   
+  <!-- Kundendaten-Eingabefelder -->
   <label>Name
     <input type="text" name="name" required value="<?= htmlspecialchars($_POST['name'] ?? '') ?>">
   </label>
@@ -109,12 +124,16 @@ $title = 'Kasse';
   <label>Stadt
     <input type="text" name="city" required value="<?= htmlspecialchars($_POST['city'] ?? '') ?>">
   </label>
+  
+  <!-- Zahlungsart-Auswahl -->
   <label>Zahlungsart
     <select name="payment" id="payment-select">
       <option value="per-post" <?= ($_POST['payment'] ?? 'per-post') === 'per-post' ? 'selected' : '' ?>>Per Post</option>
       <option value="kreditkarte" <?= ($_POST['payment'] ?? '') === 'kreditkarte' ? 'selected' : '' ?>>Kreditkarte</option>
     </select>
   </label>
+  
+  <!-- Kreditkarten-Eingabefeld (wird per JavaScript ein-/ausgeblendet) -->
   <div id="credit-card" style="display:none;">
     <label>Kreditkartennummer (16 Stellen)
       <input type="text" name="card_number" id="card_number" 
@@ -125,6 +144,8 @@ $title = 'Kasse';
       <small>Format: 1234 5678 9012 3456</small>
     </label>
   </div>
+  
+  <!-- Navigation und Submit-Button -->
   <p><a class="button" href="cart.php">Zurück zum Warenkorb</a></p>
   <button type="submit">Bestellung abschicken</button>
 </form>

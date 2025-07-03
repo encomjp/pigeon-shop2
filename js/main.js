@@ -1,4 +1,6 @@
-// Simple JS to show credit card field based on payment type
+// JavaScript für Pigeon Shop - Hauptfunktionalität
+
+// Zeigt/versteckt Kreditkartenfelder basierend auf der gewählten Zahlungsart
 function toggleCardField() {
   var payment = document.getElementById('payment-select');
   var card = document.getElementById('credit-card');
@@ -6,53 +8,58 @@ function toggleCardField() {
   card.style.display = payment.value === 'kreditkarte' ? 'block' : 'none';
 }
 
-// Format credit card number with spaces
+// Formatiert die Kreditkartennummer mit Leerzeichen (alle 4 Ziffern)
 function formatCreditCard(input) {
-  var value = input.value.replace(/\D/g, ''); // Remove non-digits
-  var formattedValue = value.replace(/(\d{4})(?=\d)/g, '$1 '); // Add space every 4 digits
-  if (formattedValue.length <= 19) { // Max length with spaces: 16 digits + 3 spaces
+  var value = input.value.replace(/\D/g, ''); // Entfernt alle Nicht-Ziffern
+  var formattedValue = value.replace(/(\d{4})(?=\d)/g, '$1 '); // Fügt Leerzeichen alle 4 Ziffern hinzu
+  if (formattedValue.length <= 19) { // Maximale Länge mit Leerzeichen: 16 Ziffern + 3 Leerzeichen
     input.value = formattedValue;
   }
 }
 
+// Event-Listener beim Laden der Seite
 document.addEventListener('DOMContentLoaded', function() {
   var payment = document.getElementById('payment-select');
   if (payment) {
     payment.addEventListener('change', toggleCardField);
-    // Show credit card field on page load if needed
+    // Zeigt Kreditkartenfeld beim Seitenladen falls nötig
     toggleCardField();
   }
 
-  // Add credit card formatting
+  // Kreditkarten-Formatierung hinzufügen
   var cardInput = document.getElementById('card_number');
   if (cardInput) {
-    // Format existing value on page load
+    // Formatiert bestehenden Wert beim Seitenladen
     if (cardInput.value) {
       formatCreditCard(cardInput);
     }
     
+    // Formatiert bei Eingabe
     cardInput.addEventListener('input', function() {
       formatCreditCard(this);
     });
+    // Erlaubt nur Zahlen und bestimmte Tasten
     cardInput.addEventListener('keydown', function(e) {
-      // Allow backspace, delete, tab, escape, enter
+      // Erlaubt Backspace, Delete, Tab, Escape, Enter
       if ([8, 9, 27, 13, 46].indexOf(e.keyCode) !== -1 ||
-          // Allow Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
+          // Erlaubt Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
           (e.keyCode === 65 && e.ctrlKey === true) ||
           (e.keyCode === 67 && e.ctrlKey === true) ||
           (e.keyCode === 86 && e.ctrlKey === true) ||
           (e.keyCode === 88 && e.ctrlKey === true)) {
         return;
       }
-      // Ensure that it is a number and stop the keypress
+      // Stellt sicher, dass nur Zahlen eingegeben werden
       if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
         e.preventDefault();
       }
     });
   }
 
+  // Auto-Speichern für Formulare mit data-autosave="true"
   var form = document.querySelector('form[data-autosave="true"]');
   if (form) {
+    // Lädt gespeicherte Formulardaten aus localStorage
     var saved = localStorage.getItem('checkout-form');
     if (saved) {
       try {
@@ -61,12 +68,13 @@ document.addEventListener('DOMContentLoaded', function() {
           if (form.elements[k]) form.elements[k].value = data[k];
         }
         toggleCardField();
-        // Format card number if it was restored from localStorage
+        // Formatiert Kartennummer falls aus localStorage wiederhergestellt
         if (cardInput && cardInput.value) {
           formatCreditCard(cardInput);
         }
       } catch(e) {}
     }
+    // Speichert Formulardaten bei jeder Eingabe
     form.addEventListener('input', function() {
       var data = {};
       Array.from(form.elements).forEach(function(el){
@@ -74,6 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
       });
       localStorage.setItem('checkout-form', JSON.stringify(data));
     });
+    // Löscht gespeicherte Daten beim Absenden
     form.addEventListener('submit', function(){
       localStorage.removeItem('checkout-form');
     });

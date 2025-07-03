@@ -1,3 +1,4 @@
+/* Grundlegendes Layout und Typografie */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -6,53 +7,63 @@ body {
   color: #2c3e50;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Sticky Footer Layout */
 }
 
+/* Header und Footer Styling */
 header, footer {
   background: #34495e;
   color: #fff;
   padding: 10px 0;
 }
 
+/* Header Navigation Layout */
 header .container {
   display: flex;
   align-items: center;
 }
 
+/* Logo Abstand */
 header img {
   margin-right: 15px;
 }
 
+/* Sticky Footer Positionierung */
 footer {
   margin-top: auto;
 }
 
+/* Navigationslink Styling */
 header a, footer a {
   color: #fff;
   text-decoration: none;
   margin-right: 15px;
 }
 
+/* Standard Link Styling */
 a {
   color: #34495e;
   text-decoration: none;
 }
 
+/* Link Hover-Effekt */
 a:hover {
   color: #1abc9c;
 }
 
+/* Haupt-Container Styling */
 .container {
   width: 90%;
   max-width: 900px;
   margin: 20px auto;
 }
 
+/* Flexbox-Container für Sticky Footer */
 body > .container {
   flex: 1;
 }
 
+/* Produktkarten Styling */
 .product {
   background: #fff;
   border: 1px solid #ddd;
@@ -61,12 +72,15 @@ body > .container {
   margin-bottom: 15px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+
+/* Produktbilder */
 .product img {
   width: 100%;
   height: auto;
   margin-bottom: 10px;
 }
 
+/* Warenkorb-Artikel Layout */
 .cart-item {
   border-bottom: 1px solid #eee;
   padding: 8px 0;
@@ -74,6 +88,7 @@ body > .container {
   justify-content: space-between;
 }
 
+/* Button und Button-ähnliche Elemente */
 button, .button {
   padding: 8px 15px;
   cursor: pointer;
@@ -84,15 +99,18 @@ button, .button {
   display: inline-block;
 }
 
+/* Button Hover-Effekt */
 button:hover, .button:hover {
   background: #16a085;
 }
 
+/* Formular-Labels */
 form label {
   display: block;
   margin-top: 10px;
 }
 
+/* Eingabefelder Styling */
 input, textarea, select {
   padding: 8px;
   width: 100%;
@@ -100,7 +118,7 @@ input, textarea, select {
   margin-top: 5px;
 }
 
-/* Credit card specific styling */
+/* Kreditkarten-spezifisches Styling */
 #credit-card {
   background: #f8f9fa;
   padding: 15px;
@@ -109,12 +127,14 @@ input, textarea, select {
   margin-top: 10px;
 }
 
+/* Kartennummer Eingabefeld */
 #card_number {
   font-family: 'Courier New', monospace;
   letter-spacing: 1px;
   font-size: 16px;
 }
 
+/* Kreditkarten Hilfstext */
 #credit-card small {
   color: #6c757d;
   font-size: 12px;
@@ -122,7 +142,7 @@ input, textarea, select {
   margin-top: 5px;
 }
 
-/* Error message styling */
+/* Fehlermeldungen Styling */
 .error {
   color: #dc3545;
   background: #f8d7da;
@@ -132,7 +152,7 @@ input, textarea, select {
   margin-bottom: 15px;
 }
 
-/* Form validation styling */
+/* Formular-Validierung Styling */
 input:invalid {
   border-color: #dc3545;
 }
@@ -141,7 +161,7 @@ input:valid {
   border-color: #28a745;
 }
 
-/* Button styling improvements */
+/* Submit-Button Styling */
 button[type="submit"] {
   background: #28a745;
   font-size: 16px;
@@ -149,6 +169,7 @@ button[type="submit"] {
   margin-top: 15px;
 }
 
+/* Submit-Button Hover-Effekt */
 button[type="submit"]:hover {
   background: #218838;
 }

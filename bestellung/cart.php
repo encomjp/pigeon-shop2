@@ -1,4 +1,5 @@
 <?php
+// Warenkorb-Übersichtsseite - zeigt alle hinzugefügten Produkte an
 session_start();
 $cart = $_SESSION['cart'] ?? [];
 $title = 'Warenkorb';
@@ -17,13 +18,22 @@ $title = 'Warenkorb';
 <?php if (!$cart): ?>
 <p>Der Warenkorb ist leer.</p>
 <?php else: ?>
-<?php $sum = 0; foreach ($cart as $item): $sum += $item['product']['price']*$item['qty']; ?>
+<?php 
+// Berechne Gesamtsumme und zeige alle Warenkorb-Artikel an
+$sum = 0; 
+foreach ($cart as $item): 
+    $sum += $item['product']['price']*$item['qty']; 
+?>
   <div class="cart-item">
+    <!-- Produktname, Anzahl und Preis anzeigen -->
     <?= htmlspecialchars($item['product']['name']) ?> x <?= $item['qty'] ?> - €<?= number_format($item['product']['price']*$item['qty'],2) ?>
+    <!-- Link zum Entfernen des Produkts aus dem Warenkorb -->
     <a class="button" href="remove_from_cart.php?id=<?= $item['product']['id'] ?>">Entfernen</a>
   </div>
 <?php endforeach; ?>
+<!-- Gesamtsumme anzeigen -->
 <p><strong>Gesamt: €<?= number_format($sum,2) ?></strong></p>
+<!-- Link zur Kasse -->
 <a class="button" href="checkout.php">Zur Kasse</a>
 <?php endif; ?>
 </div>
